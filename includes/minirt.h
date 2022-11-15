@@ -239,6 +239,15 @@ typedef	struct s_comps
 	t_bool			inside;
 }	t_comps;
 
+typedef struct s_light_var
+{
+	t_light		l;
+	t_point		pos;
+	t_vector	eyev;
+	t_vector 	normalv; 
+	t_bool 		in_shadow;
+}	t_light_var;
+
 // main struct
 typedef struct s_data
 {
@@ -397,8 +406,7 @@ t_vector	reflect(t_vector vec, t_vector normal);
 //Scene and lights
 t_light		point_light(t_point pos, t_color intensity);
 t_material	material(void);
-t_color		lighting(t_material m, t_light l, t_point pos,
-	t_vector eyev, t_vector normalv, t_bool in_shadow);
+t_color		lighting(t_comps c, t_light l, t_bool in_shadow);
 t_world		world(void);
 t_world		default_world(t_data *scene_data);
 t_list	*intersect_world(t_world w, t_ray r);

@@ -1,7 +1,6 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/imustafa/Desktop/git/MiniRT_dev'
 gcc -Wall -Wextra -Werror -g3   -c -o get_next_line.o get_next_line.c
- 
 gcc -Wall -Wextra -Werror -g3   -c -o get_next_line_utils.o get_next_line_utils.c
 gcc -Wall -Wextra -Werror -g3   -c -o main.o main.c
 gcc -Wall -Wextra -Werror -g3   -c -o coords/color.o coords/color.c
@@ -16,7 +15,6 @@ gcc -Wall -Wextra -Werror -g3   -c -o free/free_scene_data.o free/free_scene_dat
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/identity.o matrices/identity.c
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/inverse.o matrices/inverse.c
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/inverting.o matrices/inverting.c
- 
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/matrix.o matrices/matrix.c
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/transform.o matrices/transform.c
 gcc -Wall -Wextra -Werror -g3   -c -o matrices/transpose.o matrices/transpose.c
@@ -43,12 +41,14 @@ cc -O2 -DSTRINGPUTX11   -c -o mlx_init_loop.o mlx_init_loop.m
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_image.o mlx_new_image.m
 cc -O2 -DSTRINGPUTX11   -c -o mlx_xpm.o mlx_xpm.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_int_str_to_wordtab.o mlx_int_str_to_wordtab.c
+ 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_png.o mlx_png.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_mouse.o mlx_mouse.m
 ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o mlx_png.o mlx_mouse.o
 ranlib libmlx.a
 make[1]: Leaving directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/mlx_mac'
 /Library/Developer/CommandLineTools/usr/bin/make -C libs/libft
+ 
 make[1]: Entering directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/libft'
 gcc -Wall -Wextra -Werror -g   -c -o ft_atoi.o ft_atoi.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_bzero.o ft_bzero.c
@@ -58,6 +58,7 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_isalpha.o ft_isalpha.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isascii.o ft_isascii.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isdigit.o ft_isdigit.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isprint.o ft_isprint.c
+ 
 gcc -Wall -Wextra -Werror -g   -c -o ft_itoa.o ft_itoa.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_memchr.o ft_memchr.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_split.o ft_split.c
@@ -87,7 +88,6 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_toupper.o ft_toupper.c
 ar -rcs libft.a ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_memchr.o ft_split.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_strjoin.o ft_putnbr_fd.o ft_putstr_fd.o ft_striteri.o ft_strchr.o ft_strdup.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
 make[1]: Leaving directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/libft'
 /Library/Developer/CommandLineTools/usr/bin/make -C libs/libft bonus
- 
 make[1]: Entering directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/libft'
 gcc -Wall -Wextra -Werror -g   -c -o ft_atoi.o ft_atoi.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_bzero.o ft_bzero.c

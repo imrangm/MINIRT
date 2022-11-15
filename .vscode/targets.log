@@ -7,10 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `get_next_line.o', needed by `miniRT'.  Stop.
 
-
-# Make data base, printed on Tue Nov 15 15:38:49 2022
+# Make data base, printed on Tue Nov 15 17:22:41 2022
 
 # Variables
 
@@ -44,6 +42,8 @@ VSCODE_CWD = /
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/imustafa/Documents:/Users/imustafa/Documents/valgrind:/Users/imustafa/Documents/42-ValgrindContainer
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = FD34D607-1F6F-40D6-ACAA-3383073F7CA3
 # makefile (from `Makefile', line 20)
 MLX_PATH = libs/mlx_mac
 # environment
@@ -51,7 +51,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.4nxXBPXtmM/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.UMM1w2vN14/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -123,13 +123,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2368
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18AA6:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -142,6 +144,8 @@ MLX_FLAGS = -Llibs/mlx_mac -lmlx -Ilibs/mlx_mac -framework OpenGL -framework App
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
@@ -153,9 +157,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 40080
+VSCODE_PID = 3260
 # variable set hash-table stats:
-# Load=70/1024=7%, Rehash=0, Collisions=3/101=3%
+# Load=73/1024=7%, Rehash=0, Collisions=3/104=3%
 
 # Pattern-specific Variable Values
 
@@ -274,6 +278,9 @@ fclean: clean
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 39):
+ 
+make: *** No rule to make target `get_next_line.o', needed by `miniRT'.  Stop.
+
 	rm -rf $(NAME)
 	$(MAKE) clean -C $(MLX_PATH)
 	$(MAKE) fclean -C $(LIBFT_PATH)
@@ -282,7 +289,6 @@ fclean: clean
 # Not a target:
 get_next_line_utils.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -466,6 +472,6 @@ matrices/inverting.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Nov 15 15:38:49 2022
+# Finished Make data base on Tue Nov 15 17:22:41 2022
 
  

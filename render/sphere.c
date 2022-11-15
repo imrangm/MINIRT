@@ -1,4 +1,7 @@
 #include "../includes/minirt.h"
+
+
+
 t_vector		local_normal_at_sphere(t_point obj_point, t_point point)
 {
 	return (subtract_points(obj_point, point));
@@ -114,56 +117,76 @@ t_material	material()
 	return (m);
 }
 
-t_color	lighting(t_material m, t_light l, t_point pos,
-	t_vector eyev, t_vector normalv, t_bool in_shadow)
+t_point	effective_color(t_material m, t_light l)
 {
-	t_point		effective_color;
+	t_point	effective_color;
+
+	effective_color.x = m.color.r * l.color.r;
+	effective_color.y = m.color.g * l.color.g;
+	effective_color.z = m.color.b * l.color.b;
+	return (effective_color);
+}
+
+t_color	color_return(t_color ambient, t_color diffuse, t_color specular)
+{
+	t_color	final;
+
+	final.r = ambient.r + diffuse.r + specular.r;
+	final.g = ambient.g + diffuse.g + specular.g;
+	final.b = ambient.b + diffuse.b + specular.b;
+
+	return (final);
+}
+
+t_color	calc_specular(t_material m, t_light l, double reflect_dot_eye)
+{
+	t_color	specular;
+	double	factor;
+
+	factor = pow(reflect_dot_eye, m.shininess);
+	specular.r = l.color.r * m.specular * factor;
+	specular.g = l.color.g * m.specular * factor;
+	specular.b = l.color.b * m.specular * factor;
+	return (specular);
+}
+
+double	light_dot_normal(t_vector lightv, t_vector normalv)
+{
+	return (dot(vector_tp(lightv), vector_tp(normalv)));
+}
+
+double	reflect_dot_eye(t_vector reflectv, t_vector eyev)
+{
+	return (dot(vector_tp(reflectv), vector_tp(eyev)));
+}
+
+t_color	lighting(t_comps c, t_light l, t_bool in_shadow)
+{
 	t_vector	lightv;
 	t_vector	reflectv;
 	t_color		ambient;
 	t_color		diffuse;
 	t_color		specular;
-	t_color		ret;
-	double		light_dot_normal;
-	double		reflect_dot_eye;
-	double		factor;
-	t_point		p;
-	t_tuple		tp1;
-	t_tuple		tp2;
-	t_tuple		tp3;
+	t_tuple		tp[3];
 
-	effective_color.x = m.color.r * l.color.r;
-	effective_color.y = m.color.g * l.color.g;
-	effective_color.z = m.color.b * l.color.b;
-	p = point(l.pos.x, l.pos.y, l.pos.z);
-	lightv = normalize(subtract_points(p, pos));
-	tp1 = multiply(point_tp(effective_color), m.ambient);
-	ambient = color(tp1.x, tp1.y, tp1.z);
-	light_dot_normal = dot(vector_tp(lightv), vector_tp(normalv));
-	if (light_dot_normal < 0 || in_shadow)
+	lightv = normalize(subtract_points(point(l.pos.x, l.pos.y, l.pos.z), c.over_point));
+	tp[0] = multiply(point_tp(effective_color(c.object.material, l)), c.object.material.ambient);
+	ambient = color(tp[0].x, tp[0].y, tp[0].z);
+	if (light_dot_normal(lightv, c.normalv) < 0 || in_shadow)
 	{
 		diffuse = color(0, 0, 0);
 		specular = color(0, 0, 0);
 	}
 	else
 	{
-		tp2 = multiply(point_tp(effective_color), m.diffuse);
-		tp3 = multiply(tp2, light_dot_normal);
-		diffuse = color(tp3.x, tp3.y, tp3.z);
-		reflectv = reflect(negate_vector(lightv), normalv);
-		reflect_dot_eye = dot(vector_tp(reflectv), vector_tp(eyev));
-		if (reflect_dot_eye <= 0)
+		tp[1] = multiply(point_tp(effective_color(c.object.material, l)), c.object.material.diffuse);
+		tp[2] = multiply(tp[1], light_dot_normal(lightv, c.normalv));
+		diffuse = color(tp[2].x, tp[2].y, tp[2].z);
+		reflectv = reflect(negate_vector(lightv), c.normalv);
+		if (reflect_dot_eye(reflectv, c.eyev) <= 0)
 			specular = color(0, 0, 0);
 		else
-		{
-			factor = pow(reflect_dot_eye, m.shininess);
-			specular.r = l.color.r * m.specular * factor;
-			specular.g = l.color.g * m.specular * factor;
-			specular.b = l.color.b * m.specular * factor;
-		}
+			specular = calc_specular(c.object.material, l, reflect_dot_eye(reflectv, c.eyev));
 	}
-	ret.r = ambient.r + diffuse.r + specular.r;
-	ret.g = ambient.g + diffuse.g + specular.g;
-	ret.b = ambient.b + diffuse.b + specular.b;
-	return (ret);
+	return (color_return(ambient, diffuse, specular));
 }
