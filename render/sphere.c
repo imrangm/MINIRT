@@ -59,7 +59,7 @@ t_vector	normal_at(t_shape s, t_point p)
 	if (!ft_strncmp(s.shape_name, "sp", 2))
 		obj_normal = local_normal_at_sphere(obj_point, point);
 	if (!ft_strncmp(s.shape_name, "pl", 2))
-		obj_normal = local_normal_at_plane(obj_point, point);
+		obj_normal = local_normal_at_plane();
 	if (!ft_strncmp(s.shape_name, "cy", 2))
 		obj_normal = local_normal_at_cylinder(s.shape,obj_point);	
 	tp3 = vector_tp(obj_normal);
