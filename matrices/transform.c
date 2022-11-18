@@ -8,6 +8,14 @@ double	deg(double rad)
 	return (d);
 }
 
+double	rad(double deg)
+{
+	double	r;
+
+	r = (deg * PI) / 180;
+	return (r);
+}
+
 double	**translation(t_tuple tp)
 {
 	double	**res;

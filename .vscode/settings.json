@@ -17,6 +17,7 @@
 		"algorithm": "c",
 		"functional": "c",
 		"iterator": "c",
-		"memory": "c"
+		"memory": "c",
+		"minirt.h": "c"
 	}
 }

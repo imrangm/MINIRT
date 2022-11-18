@@ -131,6 +131,7 @@ int main (int argc, char **argv) {
   
     w.shape_count = scene_data.total_shape_count;
     c = camera(HEIGHT, WIDTH , (scene_data.camera.fov * (PI/180)));
+	
 	from = scene_data.camera.pos;
 	to = point(0,3,-7);
     up = scene_data.camera.norm_vector;

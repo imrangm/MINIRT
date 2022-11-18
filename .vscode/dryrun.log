@@ -25,6 +25,9 @@ gcc -Wall -Wextra -Werror -g3   -c -o parser/parse_light.o parser/parse_light.c
 gcc -Wall -Wextra -Werror -g3   -c -o parser/parse_plane.o parser/parse_plane.c
 gcc -Wall -Wextra -Werror -g3   -c -o parser/parse_sphere.o parser/parse_sphere.c
 gcc -Wall -Wextra -Werror -g3   -c -o parser/parser.o parser/parser.c
+gcc -Wall -Wextra -Werror -g3   -c -o render/lighting_func1.o render/lighting_func1.c
+gcc -Wall -Wextra -Werror -g3   -c -o render/lighting_func2.o render/lighting_func2.c
+gcc -Wall -Wextra -Werror -g3   -c -o render/normal.o render/normal.c
 gcc -Wall -Wextra -Werror -g3   -c -o render/ray.o render/ray.c
 gcc -Wall -Wextra -Werror -g3   -c -o render/renderer.o render/renderer.c
 gcc -Wall -Wextra -Werror -g3   -c -o render/scene.o render/scene.c
@@ -33,7 +36,6 @@ gcc -Wall -Wextra -Werror -g3   -c -o render/sphere.o render/sphere.c
 gcc -Wall -Wextra -Werror -g3   -c -o render/view.o render/view.c
 gcc -Wall -Wextra -Werror -g3   -c -o utils/utils.o utils/utils.c
 /Library/Developer/CommandLineTools/usr/bin/make -C libs/mlx_mac
- 
 make[1]: Entering directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/mlx_mac'
 cc -O2 -DSTRINGPUTX11   -c -o mlx_shaders.o mlx_shaders.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_window.o mlx_new_window.m
@@ -41,14 +43,12 @@ cc -O2 -DSTRINGPUTX11   -c -o mlx_init_loop.o mlx_init_loop.m
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_image.o mlx_new_image.m
 cc -O2 -DSTRINGPUTX11   -c -o mlx_xpm.o mlx_xpm.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_int_str_to_wordtab.o mlx_int_str_to_wordtab.c
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_png.o mlx_png.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_mouse.o mlx_mouse.m
 ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o mlx_png.o mlx_mouse.o
 ranlib libmlx.a
 make[1]: Leaving directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/mlx_mac'
 /Library/Developer/CommandLineTools/usr/bin/make -C libs/libft
- 
 make[1]: Entering directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/libft'
 gcc -Wall -Wextra -Werror -g   -c -o ft_atoi.o ft_atoi.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_bzero.o ft_bzero.c
@@ -58,7 +58,6 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_isalpha.o ft_isalpha.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isascii.o ft_isascii.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isdigit.o ft_isdigit.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_isprint.o ft_isprint.c
- 
 gcc -Wall -Wextra -Werror -g   -c -o ft_itoa.o ft_itoa.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_memchr.o ft_memchr.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_split.o ft_split.c
@@ -72,6 +71,7 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_strjoin.o ft_strjoin.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_putnbr_fd.o ft_putnbr_fd.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_putstr_fd.o ft_putstr_fd.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_striteri.o ft_striteri.c
+ 
 gcc -Wall -Wextra -Werror -g   -c -o ft_strchr.o ft_strchr.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strdup.o ft_strdup.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strlcat.o ft_strlcat.c
@@ -116,6 +116,7 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_strlcat.o ft_strlcat.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strlcpy.o ft_strlcpy.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strlen.o ft_strlen.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strmapi.o ft_strmapi.c
+ 
 gcc -Wall -Wextra -Werror -g   -c -o ft_strncmp.o ft_strncmp.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strnstr.o ft_strnstr.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_strrchr.o ft_strrchr.c
@@ -128,6 +129,7 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_lstadd_back.o ft_lstadd_back.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstadd_front.o ft_lstadd_front.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstclear.o ft_lstclear.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstdelone.o ft_lstdelone.c
+ 
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstiter.o ft_lstiter.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstlast.o ft_lstlast.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstsize.o ft_lstsize.c
@@ -135,6 +137,6 @@ gcc -Wall -Wextra -Werror -g   -c -o ft_lstnew.o ft_lstnew.c
 gcc -Wall -Wextra -Werror -g   -c -o ft_lstmap.o ft_lstmap.c
 ar -rcs libft.a ft_lstadd_back.o ft_lstadd_front.o ft_lstclear.o ft_lstdelone.o ft_lstiter.o ft_lstlast.o ft_lstsize.o ft_lstnew.o ft_lstmap.o
 make[1]: Leaving directory `/Users/imustafa/Desktop/git/MiniRT_dev/libs/libft'
-gcc get_next_line.o get_next_line_utils.o main.o coords/color.o coords/compare.o coords/normal.o coords/operation.o coords/product.o coords/subtract.o coords/tuple.o error/error.o free/free_scene_data.o matrices/identity.o matrices/inverse.o matrices/inverting.o matrices/matrix.o matrices/transform.o matrices/transpose.o parser/parse_ambient_lighting.o parser/parse_camera.o parser/parse_cylinder.o parser/parse_light.o parser/parse_plane.o parser/parse_sphere.o parser/parser.o render/ray.o render/renderer.o render/scene.o render/shadow.o render/sphere.o render/view.o utils/utils.o libs/libft/libft.a -Llibs/mlx_mac -lmlx -Ilibs/mlx_mac -framework OpenGL -framework AppKit  -Wall -Wextra -Werror -g3 -o miniRT
+gcc get_next_line.o get_next_line_utils.o main.o coords/color.o coords/compare.o coords/normal.o coords/operation.o coords/product.o coords/subtract.o coords/tuple.o error/error.o free/free_scene_data.o matrices/identity.o matrices/inverse.o matrices/inverting.o matrices/matrix.o matrices/transform.o matrices/transpose.o parser/parse_ambient_lighting.o parser/parse_camera.o parser/parse_cylinder.o parser/parse_light.o parser/parse_plane.o parser/parse_sphere.o parser/parser.o render/lighting_func1.o render/lighting_func2.o render/normal.o render/ray.o render/renderer.o render/scene.o render/shadow.o render/sphere.o render/view.o utils/utils.o libs/libft/libft.a -Llibs/mlx_mac -lmlx -Ilibs/mlx_mac -framework OpenGL -framework AppKit  -Wall -Wextra -Werror -g3 -o miniRT
 make: Leaving directory `/Users/imustafa/Desktop/git/MiniRT_dev'
  

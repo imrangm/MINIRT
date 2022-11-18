@@ -13,8 +13,8 @@
 # define MIN(a,b) ((a) < (b) ? (a) : (b))
 # define EPSILON 0.00001
 # define	PI 4.0 * atan(1.0)
-# define HEIGHT 500
-# define WIDTH 500
+# define HEIGHT 800
+# define WIDTH 800
 //KEYS
 # define KEY_ESC 53
 # define TRUE 1
@@ -315,6 +315,26 @@ void parse_sphere(char **info, t_data *scene_data);
 void parse_plane(char **info, t_data *scene_data);
 void parse_cylinder(char **info, t_data *scene_data);
 
+//lighting functions
+t_point	effective_color(t_material m, t_light l);
+t_color	color_return(t_color ambient, t_color diffuse, t_color specular);
+t_color	calc_ambient(t_comps c, t_light l);
+t_color	calc_diffuse(t_comps c, t_light l, t_vector lightv);
+t_color	calc_specular(t_material m, t_light l, double reflect_dot_eye);
+
+//lighting utils
+t_vector	reflect(t_vector vec, t_vector normal);
+t_light		point_light(t_point pos, t_color intensity);
+t_material	material(void);
+double		light_dot_normal(t_vector lightv, t_vector normalv);
+double		reflect_dot_eye(t_vector reflectv, t_vector eyev);
+
+//normal functions
+t_vector	local_normal_at_sphere(t_point obj_point, t_point point);
+t_vector	local_normal_at_plane(void);
+t_vector	local_normal_at_cylinder(void *shape, t_point pnt);
+t_vector	normal_vector(t_shape s, t_point obj_point, t_point origin);
+t_vector	object_normal(t_shape s, t_tuple tp);
 
 //FREE FUNCTIONS
 void free_scene_data();
@@ -387,6 +407,7 @@ double		**rotation_x(double rad);
 double		**rotation_y(double rad);
 double		**rotation_z(double rad);
 t_tuple		shearing(t_tuple tp, double *coord);
+double		rad(double deg);
 
 //Ray
 t_ray		ray(t_point p, t_vector v);
