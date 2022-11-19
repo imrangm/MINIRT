@@ -155,7 +155,7 @@ t_shape create_shape(char *shape_name, void *shape,t_data *scene_data)
 		sp->sp_center.y, sp->sp_center.z, 1));
 		scale = scaling( tuple ((sp->radius)/2, (sp->radius)/2, (sp->radius)/2, 1));
 
-		// transform = matrix_multi(scale, translate);
+		transform = matrix_multi(scale, translate);
 		shp.transform = transform;
 		// set_transform(&shp, matrix_multi(shp.transform, translation(tuple(sp->sp_center.x,sp->sp_center.y,sp->sp_center.z,1))));
 		// set_transform(&shp, scaling(tuple(sp->radius, sp->radius,sp->radius, 1)));
